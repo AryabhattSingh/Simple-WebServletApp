@@ -10,13 +10,14 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
-<!--   <servlet>
+<!--   
+  <servlet>
         <servlet-name>AddUser</servlet-name>
         <servlet-class>user.servlets.CreateUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
         <servlet-name>AddUser</servlet-name>
-        <url-pattern>/addUser</url-pattern>
+        <url-pattern>/addServlet</url-pattern>
   </servlet-mapping>
 
   <servlet>
@@ -25,9 +26,44 @@
   </servlet>
   <servlet-mapping>
         <servlet-name>UpdateUser</servlet-name>
-        <url-pattern>/updateUser</url-pattern>
+        <url-pattern>/updateServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  		<servlet-name>DeleteUser</servlet-name>
+  		<servlet-class>user.servlets.DeleteUserServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  		<servlet-name>DeleteServlet</servlet-name>
+  		<url-pattern>/deleteUser</url-pattern>
   </servlet-mapping>
 -->
+
+	<servlet>
+		<servlet-name>ReadUser</servlet-name>
+		<servlet-class>user.servlets.ReadUsersServlet</servlet-class>
+		<init-param>
+			<param-name>SQLDriver</param-name>
+			<param-value>com.mysql.cj.jdbc.Driver</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dbUrl</param-name>
+			<param-value>jdbc:mysql://localhost/mydb</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dbUser</param-name>
+			<param-value>root</param-value>
+		</init-param>
+		<init-param>
+			<param-name>dbPassword</param-name>
+			<param-value>root</param-value>
+		</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ReadUser</servlet-name>
+		<url-pattern>/readServlet</url-pattern>
+	</servlet-mapping>
+
 
 </web-app>
 

@@ -7,7 +7,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,16 +18,22 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class CreateUserServlet
  */
-@WebServlet("/addServlet")
+@WebServlet(urlPatterns = "/addServlet", initParams = {
+		@WebInitParam(name = "SQLDriver", value = "com.mysql.cj.jdbc.Driver"),
+		@WebInitParam(name = "dbUrl", value = "jdbc:mysql://localhost/mydb"),
+		@WebInitParam(name = "dbUser", value = "root"), @WebInitParam(name = "dbPassword", value = "root") })
+
 public class CreateUserServlet extends HttpServlet {
+
 	private static final long serialVersionUID = 1L;
 	private Connection connection;
 
-	public void init() {
+	public void init(ServletConfig config) {
 		try {
 			System.out.println("Create user init()");
-			Class.forName("com.mysql.cj.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/mydb", "root", "root");
+			Class.forName(config.getInitParameter("SQLDriver"));
+			connection = DriverManager.getConnection(config.getInitParameter("dbUrl"),
+					config.getInitParameter("dbUser"), config.getInitParameter("dbPassword"));
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}

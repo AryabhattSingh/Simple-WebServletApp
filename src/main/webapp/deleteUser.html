@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Delete User</title>
+</head>
+<body>
+	
+	<h1>Delete a user</h1>
+	<form method="post" action="deleteServlet">
+		<table>
+			<tr>
+				<td>
+					<label id="userEmail">Please enter your email:</label>
+				</td>
+				<td>
+					<input type="email" name="email" id="userEmail">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<label id="userPassword">Please enter your password:</label>
+				</td>
+				<td>
+					<input type="password" name="password" id="userPassword">
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="submit" value="Delete User">
+				</td>
+			</tr>
+		</table>
+	</form>
+
+</body>
+</html>
